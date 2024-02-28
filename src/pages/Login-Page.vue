@@ -1,19 +1,18 @@
 <template>
   <h2>Login</h2>
   <hr>
-  <form>
+
+  <form @submit.prevent="onLogin()">
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    <label for="foremail" class="form-label">Email address</label>
+    <input type="text" class="form-control" v-model="email" id="foremail">
+    <div id="emailHelp" class="form-text" v-if="errors.email">{{errors.email}}</div>
   </div>
+
   <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    <label for="password" class="form-label">Password</label>
+    <input type="text" class="form-control" v-model="password" id="password">
+    <div id="emailHelp" class="form-text" v-if="errors.password">{{errors.password}}</div>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
@@ -21,18 +20,24 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import singupvalidation from "../services/singupvalidation.js";
 
 export default {
   data () {
     return {
-
+      email : "",
+      password : "",
+      errors : []
     }
   },
-  computed : {
-    ...mapState("auth", {
-      firstName : (state) => state.name
-    })
+  methods : {
+    onLogin(){
+      let validations = new singupvalidation(
+        this.email,
+        this.password
+      );
+      this.errors = validations.checkValidations();
+    }
   }
 }
 </script>

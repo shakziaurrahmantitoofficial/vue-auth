@@ -2,13 +2,13 @@ import Validations from "./Validations.js";
 
 export default class singupvalidation{
 	constructor(email, password){
-		this.email = email;
-		this.password = password;
+		this.email 		= email;
+		this.password 	= password;
 	}
 
 	checkValidations(){
-		let errors = [];
 
+		let errors = [];
 		if(!Validations.checkEmail(this.email)){
 			errors['email'] = "Invalid email";
 		}

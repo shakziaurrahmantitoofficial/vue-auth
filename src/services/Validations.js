@@ -5,12 +5,10 @@ export default class Validations{
 		}
 		return false;
 	}
-
 	static minLength(name, minLength){
 		if(name.length < minLength){
 			return false;
 		}
-		return false;
+		return true;
 	}
-
 }
