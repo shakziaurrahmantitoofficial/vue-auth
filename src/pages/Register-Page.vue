@@ -21,6 +21,8 @@
 
 <script>
 import singupvalidation from "../services/singupvalidation.js";
+import {mapActions} from "vuex";
+import {SINGUP_ACTION} from "./store/storeconsts.js";
 
 export default {
   data () {
@@ -31,6 +33,9 @@ export default {
     }
   },
   methods : {
+    ...mapActions('auth', {
+      singup : SINGUP_ACTION
+    }),
     onLogin(){
       let validations = new singupvalidation(
         this.email,
@@ -41,6 +46,8 @@ export default {
       if("email" in this.errors || "password" in this.errors){
         return false;
       }
+
+      this.singup({email: this.email, password : this.password});
 
     }
   }
