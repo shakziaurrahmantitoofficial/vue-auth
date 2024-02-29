@@ -1,1 +1,1 @@
-export const SINGUP_ACTION = '[action] sinnup user' 
+export const SINGUP_ACTION = ''
