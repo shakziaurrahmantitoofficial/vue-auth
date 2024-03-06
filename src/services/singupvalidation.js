@@ -20,4 +20,12 @@ export default class singupvalidation{
 		return errors;
 
 	}
+
+	static getErrorMessageFromCode(errorCode){
+		switch(errorCode){
+			case 'EMAIL_EXISTS' : 
+			return "Email already exixts."
+		}
+	}
+
 }

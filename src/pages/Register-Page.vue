@@ -2,6 +2,8 @@
   <h2>Register</h2>
   <hr>
 
+  <div class="alert alert-danger" v-if="error">{{error}}</div>
+
   <form @submit.prevent="onLogin()">
   <div class="mb-3">
     <label for="foremail" class="form-label">Email address</label>
@@ -29,7 +31,8 @@ export default {
     return {
       email : "",
       password : "",
-      errors : []
+      errors : [],
+      error : ''
     }
   },
   methods : {
@@ -47,7 +50,9 @@ export default {
         return false;
       }
 
-      this.singups({email: this.email, password : this.password});
+      this.singups({email: this.email, password : this.password}).catch((error) => {
+        this.error = error;
+      });
 
     }
   }
