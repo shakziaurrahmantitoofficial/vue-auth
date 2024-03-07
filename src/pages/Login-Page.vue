@@ -2,6 +2,8 @@
   <h2>Login</h2>
   <hr>
 
+  <div class="alert alert-danger" v-if="error">{{error}}</div>
+
   <form @submit.prevent="onLogin()">
   <div class="mb-3">
     <label for="foremail" class="form-label">Email address</label>
@@ -21,22 +23,44 @@
 
 <script>
 import singupvalidation from "../services/singupvalidation.js";
+import {mapActions} from "vuex";
+import {LOGIN_ACTION} from "../store/storeconsts.js";
 
 export default {
   data () {
     return {
-      email : "",
-      password : "",
-      errors : []
+      email     : "",
+      password  : "",
+      errors    : [],
+      error     : ''
     }
   },
   methods : {
-    onLogin(){
+    ...mapActions('auth', {
+      login : LOGIN_ACTION
+    }),
+    async onLogin(){
       let validations = new singupvalidation(
         this.email,
         this.password
       );
+
       this.errors = validations.checkValidations();
+      if(this.errors.length){
+        return false;
+      }
+
+      this.error = "";
+
+      try{
+        await this.login({
+            email     : this.email,
+            password  : this.password
+         });
+      }catch(e){
+        this.error = e;
+      }
+
     }
   }
 }

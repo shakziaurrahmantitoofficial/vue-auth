@@ -39,7 +39,7 @@ export default {
     ...mapActions('auth', {
       singups : SINGUP_ACTION
     }),
-    onLogin(){
+    async onLogin(){
       let validations = new singupvalidation(
         this.email,
         this.password
@@ -50,7 +50,7 @@ export default {
         return false;
       }
 
-      this.singups({email: this.email, password : this.password}).catch((error) => {
+      await this.singups({email: this.email, password : this.password}).catch((error) => {
         this.error = error;
       });
 
