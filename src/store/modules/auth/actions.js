@@ -22,7 +22,7 @@ export default {
 		});
 
 		try{
-			await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAS48zINvP7E2cfDGHxCsaMf33GZd0vZFA`, postData)
+			response = await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAS48zINvP7E2cfDGHxCsaMf33GZd0vZFA`, postData)
 
 		}
 		catch(err){
@@ -37,7 +37,7 @@ export default {
 		context.commit(LOADING_SPINNER_SHOW_MUTATION, false, {
 			root : true
 		});
-		
+
 		if(response.status === 200){
 			context.commit(SET_USER_TOKEN_DATA_MUTATION,{
 				email : response.data.email,

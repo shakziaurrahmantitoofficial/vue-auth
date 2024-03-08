@@ -29,8 +29,8 @@ import {LOGIN_ACTION} from "../store/storeconsts.js";
 export default {
   data () {
     return {
-      email     : "",
-      password  : "",
+      email     : "test@gmail.com",
+      password  : "123456",
       errors    : [],
       error     : ''
     }
@@ -60,6 +60,7 @@ export default {
       }catch(e){
         this.error = e;
       }
+      this.$router.push('/post');
 
     }
   }

@@ -4,3 +4,5 @@ export const LOADING_SPINNER_SHOW_MUTATION =
     '[mutations] show loading spinner';
 export const LOGIN_ACTION =
     '[action] user login';
+export const GET_USER_TOKEN_GETTER =
+    '[getters] auth user token';
