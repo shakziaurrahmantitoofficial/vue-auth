@@ -1,8 +1,10 @@
-export const SINGUP_ACTION = '[action] singup user';
-export const SET_USER_TOKEN_DATA_MUTATION = '[mutations] set user token data';
-export const LOADING_SPINNER_SHOW_MUTATION =
-    '[mutations] show loading spinner';
-export const LOGIN_ACTION =
-    '[action] user login';
-export const GET_USER_TOKEN_GETTER =
-    '[getters] auth user token';
+export const SINGUP_ACTION 					= '[action] singup user';
+export const SET_USER_TOKEN_DATA_MUTATION 	= '[mutations] set user token data';
+export const LOADING_SPINNER_SHOW_MUTATION 	= '[mutations] show loading spinner';
+export const LOGIN_ACTION 					= '[action] user login';
+export const LOGOUT_ACTION 					= '[action] logout user';
+export const GET_USER_TOKEN_GETTER 			= '[getters] auth user token';
+export const AUTH_ACTION 					= '[action] do user auth';
+export const AUTO_LOGIN_ACTION 				= '[action] do user auth';
+export const SIGNUP_ACTION 					= '[action] do user auth';
+export const IS_USER_AUTHENTICATE_GETTER 	= '[getters] is uer authenticated';

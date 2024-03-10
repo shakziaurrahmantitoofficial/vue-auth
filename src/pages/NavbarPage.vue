@@ -8,8 +8,14 @@
     <!-- <div class="collapse navbar-collapse" id="navbarNav"> -->
       <ul class="navbar-nav">
         <li class="nav-item"><router-link class="nav-link" to="/">Home</router-link></li>
-        <li class="nav-item"><router-link class="nav-link" to="/login">Login</router-link></li>
-        <li class="nav-item"><router-link class="nav-link" to="/register">SignUp</router-link></li>
+        <li class="nav-item" v-if="isAuthenticated"><router-link class="nav-link" to="/post">Post</router-link></li>
+        <li class="nav-item" v-if="!isAuthenticated"><router-link class="nav-link" to="/login">Login</router-link></li>
+        <li class="nav-item" v-if="!isAuthenticated"><router-link class="nav-link" to="/register">SignUp</router-link></li>
+
+        <li class="nav-item" v-if="isAuthenticated">
+          <a href="#" class="nav-link" @click.prevent="onLogout()">Logout</a>
+        </li>
+
       </ul>
     <!-- </div> -->
   </div>
@@ -17,13 +23,28 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+import { IS_USER_AUTHENTICATE_GETTER, LOGOUT_ACTION } from "../store/storeconsts.js";
 export default {
 
   name: 'NavbarPage',
-
+  computed : {
+    ...mapGetters('auth', {
+      isAuthenticated : IS_USER_AUTHENTICATE_GETTER
+    })
+  },
   data () {
     return {
 
+    }
+  },
+  methods : {
+    ...mapActions('auth', {
+      logout : LOGOUT_ACTION
+    }),
+    onLogout(){
+      this.logout();
+      this.$router.replace('/login');
     }
   }
 }

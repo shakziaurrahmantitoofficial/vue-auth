@@ -10,6 +10,7 @@
 import NavbarPage from "./pages/NavbarPage.vue";
 import TheLoading from "./components/TheLoading.vue";
 import {mapState} from "vuex";
+import { AUTO_LOGIN_ACTION } from "./store/storeconsts.js";
 
 export default {
   name: 'App',
@@ -21,6 +22,9 @@ export default {
   components : {
     NavbarPage,
     TheLoading
+  },
+  created(){
+    this.$store.dispatch(`auth/${AUTO_LOGIN_ACTION}`);
   }
 }
 </script>

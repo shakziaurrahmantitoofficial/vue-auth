@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axiosInstance from "../services/AxiosTokenInstance.js";
 import { mapGetters } from "vuex";
 import { GET_USER_TOKEN_GETTER } from "../store/storeconsts.js";
 
@@ -22,8 +22,8 @@ computed: {
 	})
 },
 mounted(){
-axios
-.get(`https://vue-auth-a6fbb-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json?auth=${this.token}`)
+axiosInstance
+.get(`https://vue-auth-a6fbb-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json?auth=${ this.token }`)
 .then((response) => {
 	console.log(response);
 })
