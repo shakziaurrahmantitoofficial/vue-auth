@@ -45,10 +45,12 @@ export default {
 				JSON.parse(userData)
 			);
 		}
+		console.log("test will be go here");
     },
 
 
 	async [AUTH_ACTION](context, payload){
+
 		let postData = {
 			email 				: payload.email,
 			password 			: payload.password,
@@ -79,7 +81,6 @@ export default {
 			};
 			localStorage.setItem('userData', JSON.stringify(tokenData));
 			context.commit(SET_USER_TOKEN_DATA_MUTATION, tokenData);
-
 		}
 
 	}
